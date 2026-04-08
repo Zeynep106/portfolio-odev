@@ -1,62 +1,81 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benim Portfolyom</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeynep | Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts ekleyelim -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1 id="baslik"></h1>
-    <button id="temaBtn">🌙</button>
-  </header>
+    <div class="background-blobs"></div> <!-- Arka plan süsü -->
 
-  <nav>
-    <a href="#hakkimda">Hakkımda</a>
-    <a href="#yetenekler">Yetenekler</a>
-    <a href="#projeler">Projeler</a>
-    <a href="#iletisim">İletişim</a>
-  </nav>
+    <header>
+        <nav class="navbar">
+            <div class="logo">ZP</div>
+            <div class="nav-links">
+                <a href="#hakkimda">Hakkımda</a>
+                <a href="#yetenekler">Yetenekler</a>
+                <a href="#projeler">Projeler</a>
+                <a href="#iletisim">İletişim</a>
+            </div>
+            <button id="temaBtn" class="glass-btn">🌙</button>
+        </nav>
+        <div class="hero">
+            <h1 id="baslik"></h1>
+            <p class="subtitle">Geleceğin Web Geliştiricisi</p>
+        </div>
+    </header>
 
-  <section id="hakkimda">
-    <img src="images/profil.jpg" alt="Profil Fotoğrafı" class="profil" />
-    <h2>Hakkımda</h2>
-    <p>Merhaba, ben zeynep. Bilgisayar Programcılığı öğrencisiyim. Kendimi web geliştirme alanında geliştirmeye çalışıyorum.</p>
-  </section>
+    <main class="container">
+        <section id="hakkimda" class="glass-card">
+            <div class="hakkimda-content">
+                <img src="images/profil.jpg" alt="Zeynep" class="profil-img">
+                <div class="text">
+                    <h2>Hakkımda</h2>
+                    <p>Merhaba, ben <strong>Zeynep</strong>. Gümüşhane Üniversitesi'nde Bilgisayar Programcılığı öğrencisiyim. Modern web teknolojileriyle etkileşimli deneyimler oluşturmayı seviyorum.</p>
+                </div>
+            </div>
+        </section>
 
-  <section id="yetenekler">
-    <h2>Yetenekler ve Eğitim</h2>
-    <div class="bar">
-      <label>HTML</label>
-      <div class="skill"><div class="doluluk" style="--oran:90%;"></div></div>
-    </div>
-    <div class="bar">
-      <label>CSS</label>
-      <div class="skill"><div class="doluluk" style="--oran:80%;"></div></div>
-    </div>
-    <div class="bar">
-      <label>JavaScript</label>
-      <div class="skill"><div class="doluluk" style="--oran:70%;"></div></div>
-    </div>
-  </section>
+        <section id="yetenekler" class="glass-card">
+            <h2>Yetenekler</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span>HTML5</span>
+                    <div class="skill-bar"><div class="fill" style="--w:90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span>CSS3 & SCSS</span>
+                    <div class="skill-bar"><div class="fill" style="--w:85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span>JavaScript</span>
+                    <div class="skill-bar"><div class="fill" style="--w:75%"></div></div>
+                </div>
+            </div>
+        </section>
 
-  <section id="projeler">
-    <h2>Projelerim</h2>
-    <div>
-      <button class="filtreBtn" data-kategori="tum">Tümü</button>
-      <button class="filtreBtn" data-kategori="web">Web</button>
-      <button class="filtreBtn" data-kategori="mobil">Mobil</button>
-    </div>
-    <div id="projeListesi" class="proje-grid"></div>
-  </section>
+        <section id="projeler">
+            <h2 class="section-title">Projelerim</h2>
+            <div class="filter-group">
+                <button class="filtreBtn active" data-kategori="tum">Tümü</button>
+                <button class="filtreBtn" data-kategori="web">Web</button>
+                <button class="filtreBtn" data-kategori="mobil">Mobil</button>
+            </div>
+            <div id="projeListesi" class="proje-grid"></div>
+        </section>
+    </main>
 
-  <section id="iletisim">
-    <h2>İletişim</h2>
-    <p>📧 E-posta: <a href="mailto:ornek@mail.com">duyarzeynep104@gmail.com</a></p>
-    <p>💻 GitHub: <a href="[github.com](https://github.com/Zeynep106" target="_blank">github.com/kullaniciadiniz</a></p>
-  </section>
+    <footer id="iletisim">
+        <p>© 2026 Zeynep - Tüm Hakları Saklıdır.</p>
+        <div class="socials">
+            <a href="mailto:duyarzeynep104@gmail.com">E-posta</a>
+            <a href="https://github.com/Zeynep106" target="_blank">GitHub</a>
+        </div>
+    </footer>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

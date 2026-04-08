@@ -1,58 +1,85 @@
-// Daktilo efekti
-const baslik = "Benim Dijital Portfolyom";
-let i = 0;
-function yaziEfekti() {
-  if (i < baslik.length) {
-    document.getElementById("baslik").textContent += baslik.charAt(i);
-    i++;
-    setTimeout(yaziEfekti, 100);
-  }
-}
-yaziEfekti();
+// 1. Daktilo Efekti (Daha akıcı)
+const baslikYazisi = "Dijital Dünyama Hoş Geldiniz.";
+let index = 0;
+const baslikElement = document.getElementById("baslik");
 
-// Tema değiştirme
+function typeWriter() {
+    if (index < baslikYazisi.length) {
+        baslikElement.textContent += baslikYazisi.charAt(index);
+        index++;
+        setTimeout(typeWriter, 80);
+    }
+}
+window.onload = typeWriter;
+
+// 2. Tema Yönetimi (Local Storage ile kalıcı hale getirme)
 const temaBtn = document.getElementById("temaBtn");
+const currentTheme = localStorage.getItem("theme");
+
+if (currentTheme === "dark") {
+    document.body.classList.add("karanlik");
+    temaBtn.textContent = "☀️";
+}
+
 temaBtn.addEventListener("click", () => {
-  document.body.classList.toggle("karanlik");
-  temaBtn.textContent = document.body.classList.contains("karanlik") ? "☀️" : "🌙";
+    document.body.classList.toggle("karanlik");
+    let theme = "light";
+    if (document.body.classList.contains("karanlik")) {
+        theme = "dark";
+        temaBtn.textContent = "☀️";
+    } else {
+        temaBtn.textContent = "🌙";
+    }
+    localStorage.setItem("theme", theme);
 });
 
-// Projeler (Dinamik Listeleme)
+// 3. Projeleri Listeleme
 const projeler = [
-  { isim: "Web Sitesi 1", resim: "images/proje1.jpg", kategori: "web" },
-  { isim: "Mobil Uygulama 1", resim: "images/proje2.jpg", kategori: "mobil" },
-  { isim: "Web App 2", resim: "images/proje3.jpg", kategori: "web" },
-  { isim: "Mobil App 2", resim: "images/proje4.jpg", kategori: "mobil" },
-  { isim: "Kişisel Blog", resim: "images/proje5.jpg", kategori: "web" }
+    { isim: "E-Ticaret Arayüzü", resim: "https://picsum.photos/400/300?random=1", kategori: "web" },
+    { isim: "Hava Durumu Uygulaması", resim: "https://picsum.photos/400/300?random=2", kategori: "web" },
+    { isim: "Fitness Takip", resim: "https://picsum.photos/400/300?random=3", kategori: "mobil" },
+    { isim: "Portfolyo v1", resim: "https://picsum.photos/400/300?random=4", kategori: "web" }
 ];
 
 const projeListesi = document.getElementById("projeListesi");
 
-function projeleriGoster(liste) {
-  projeListesi.innerHTML = "";
-  liste.forEach((p) => {
-    const kart = document.createElement("div");
-    kart.classList.add("proje");
-    kart.innerHTML = `
-      <img src="${p.resim}" alt="${p.isim}">
-      <h3>${p.isim}</h3>
-      <p>Kategori: ${p.kategori}</p>
-    `;
-    projeListesi.appendChild(kart);
-  });
+function renderProjects(filter = "tum") {
+    projeListesi.innerHTML = "";
+    const filtered = filter === "tum" ? projeler : projeler.filter(p => p.kategori === filter);
+    
+    filtered.forEach(p => {
+        const html = `
+            <div class="proje-card glass-card">
+                <img src="${p.resim}" alt="${p.isim}">
+                <div class="proje-info">
+                    <h3>${p.isim}</h3>
+                    <span class="badge">${p.kategori.toUpperCase()}</span>
+                </div>
+            </div>
+        `;
+        projeListesi.insertAdjacentHTML("beforeend", html);
+    });
 }
-projeleriGoster(projeler);
+renderProjects();
 
-// Filtreleme
-const filtreButonlari = document.querySelectorAll(".filtreBtn");
-filtreButonlari.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const kategori = btn.dataset.kategori;
-    if (kategori === "tum") {
-      projeleriGoster(projeler);
-    } else {
-      const filtrelenmis = projeler.filter(p => p.kategori === kategori);
-      projeleriGoster(filtrelenmis);
-    }
-  });
+// 4. Filtreleme ve Aktif Buton
+document.querySelectorAll(".filtreBtn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        document.querySelector(".filtreBtn.active").classList.remove("active");
+        e.target.classList.add("active");
+        renderProjects(e.target.dataset.kategori);
+    });
 });
+
+// 5. Yetenek Barı Animasyonu (Görünce başlasın)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll(".fill").forEach(bar => {
+                bar.style.width = bar.getAttribute("style").split(":")[1];
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+observer.observe(document.getElementById("yetenekler"));
