@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benim Portfolyom</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 id="baslik"></h1>
+    <button id="temaBtn">🌙</button>
+  </header>
+
+  <nav>
+    <a href="#hakkimda">Hakkımda</a>
+    <a href="#yetenekler">Yetenekler</a>
+    <a href="#projeler">Projeler</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+
+  <section id="hakkimda">
+    <img src="images/profil.jpg" alt="Profil Fotoğrafı" class="profil" />
+    <h2>Hakkımda</h2>
+    <p>Merhaba, ben [Adın]. Bilgisayar Programcılığı öğrencisiyim. Kendimi web geliştirme alanında geliştirmeye çalışıyorum.</p>
+  </section>
+
+  <section id="yetenekler">
+    <h2>Yetenekler ve Eğitim</h2>
+    <div class="bar">
+      <label>HTML</label>
+      <div class="skill"><div class="doluluk" style="--oran:90%;"></div></div>
+    </div>
+    <div class="bar">
+      <label>CSS</label>
+      <div class="skill"><div class="doluluk" style="--oran:80%;"></div></div>
+    </div>
+    <div class="bar">
+      <label>JavaScript</label>
+      <div class="skill"><div class="doluluk" style="--oran:70%;"></div></div>
+    </div>
+  </section>
+
+  <section id="projeler">
+    <h2>Projelerim</h2>
+    <div>
+      <button class="filtreBtn" data-kategori="tum">Tümü</button>
+      <button class="filtreBtn" data-kategori="web">Web</button>
+      <button class="filtreBtn" data-kategori="mobil">Mobil</button>
+    </div>
+    <div id="projeListesi" class="proje-grid"></div>
+  </section>
+
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <p>📧 E-posta: <a href="mailto:ornek@mail.com">ornek@mail.com</a></p>
+    <p>💻 GitHub: <a href="[github.com](https://github.com/kullaniciadiniz)" target="_blank">github.com/kullaniciadiniz</a></p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
